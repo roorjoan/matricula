@@ -12,7 +12,6 @@ class Database
             $connection = new PDO("mysql:host={$this->dbHost};dbname={$this->dbName}", $this->dbUser, $this->dbPassword);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $connection;
-            //echo "ok";
         } catch (Exception $e) {
             die("Error de conexión a la base de datos: " . $e->getMessage());
         }
