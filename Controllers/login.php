@@ -6,6 +6,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $response = $user->login($data);
+    
     if ($response) {
         http_response_code(200);
         echo json_encode(['message' => "Login exitoso"]);

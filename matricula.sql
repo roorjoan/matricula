@@ -10,13 +10,10 @@ create table users(
 );
 
 create table students(
-    
-);
-
-create table matriculas(
-    
-);
-
-create table movimientos(
-
+    id serial primary key,
+    ci int(11) unique not null, 
+    name varchar(255) not null,
+    last_name varchar(255) not null,
+    gender char(1) not null,
+    address varchar(255) not null
 );

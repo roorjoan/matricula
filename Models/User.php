@@ -5,6 +5,12 @@ class User
 {
     use DatabaseConnection;
 
+    /**
+     * Registra un nuevo usuario en la base de datos.
+     *
+     * @param array $data Los datos del usuario a registrar.
+     * @return bool Retorna true si el usuario se registró correctamente, o false si ocurrió un error.
+     */
     public function register(array $data): bool
     {
         $passwordHash = password_hash($data['password'], PASSWORD_DEFAULT);
@@ -18,6 +24,12 @@ class User
         }
     }
 
+    /**
+     * Verifica las credenciales de inicio de sesión de un usuario.
+     *
+     * @param array $data Los datos de inicio de sesión del usuario, incluyendo su correo electrónico y contraseña.
+     * @return bool Retorna true si las credenciales de inicio de sesión son válidas, o false si no lo son o si ocurre un error.
+     */
     public function login(array $data): bool
     {
         try {
@@ -36,6 +48,12 @@ class User
         }
     }
 
+    /**
+     * Cambia el rol de un usuario (de administrador a usuario o viceversa) en la base de datos.
+     *
+     * @param int $id El ID del usuario cuyo rol se va a cambiar.
+     * @return bool Retorna true si se cambió el rol correctamente, o false si ocurrió un error.
+     */
     public function changeRole(int $id): bool
     {
         try {
