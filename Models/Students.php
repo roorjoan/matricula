@@ -49,7 +49,6 @@ class Students
         try {
             $statement = $this->connection->prepare("INSERT INTO students (ci, name, last_name, gender, address) VALUES (?, ?, ?, ?, ?)");
             $statement->execute([$data['ci'], $data['name'], $data['last_name'], $data['gender'], $data['address']]);
-            //return $this->connection->lastInsertId();
             return true;
         } catch (PDOException $e) {
             return false;

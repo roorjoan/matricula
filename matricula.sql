@@ -11,7 +11,7 @@ create table users(
 
 create table students(
     id serial primary key,
-    ci int(11) unique not null, 
+    ci varchar(11) unique not null, 
     name varchar(255) not null,
     last_name varchar(255) not null,
     gender char(1) not null,

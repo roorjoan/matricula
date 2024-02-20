@@ -14,3 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] === "PATCH") {
         echo json_encode(['message' => "Error en el servidor"]);
     };
 }
+
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
