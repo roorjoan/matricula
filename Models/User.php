@@ -9,7 +9,9 @@ class User
      * Registra un nuevo usuario en la base de datos.
      *
      * @param array $data Los datos del usuario a registrar.
-     * @return bool Retorna true si el usuario se registró correctamente, o false si ocurrió un error.
+     *                    Debe contener las claves 'name', 'email', 'password' y 'is_admin'.
+     *
+     * @return bool True si el usuario se registró correctamente, false si ocurrió un error.
      */
     public function register(array $data): bool
     {
@@ -25,10 +27,12 @@ class User
     }
 
     /**
-     * Verifica las credenciales de inicio de sesión de un usuario.
+     * Intenta autenticar a un usuario en el sistema.
      *
-     * @param array $data Los datos de inicio de sesión del usuario, incluyendo su correo electrónico y contraseña.
-     * @return bool Retorna true si las credenciales de inicio de sesión son válidas, o false si no lo son o si ocurre un error.
+     * @param array $data Los datos de inicio de sesión del usuario.
+     *                    Debe contener las claves 'email' y 'password'.
+     *
+     * @return bool True si el usuario se autenticó correctamente, false si no.
      */
     public function login(array $data): bool
     {
@@ -49,10 +53,11 @@ class User
     }
 
     /**
-     * Cambia el rol de un usuario (de administrador a usuario o viceversa) en la base de datos.
+     * Cambia el rol de un usuario entre administrador y usuario estándar.
      *
      * @param int $id El ID del usuario cuyo rol se va a cambiar.
-     * @return bool Retorna true si se cambió el rol correctamente, o false si ocurrió un error.
+     *
+     * @return bool True si el cambio de rol se realizó correctamente, false si no.
      */
     public function changeRole(int $id): bool
     {

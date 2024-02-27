@@ -1,7 +1,7 @@
 <?php
-require_once "../Models/Students.php";
+require_once "../Models/Student.php";
 
-$student = new Students();
+$student = new Student();
 $data = json_decode(file_get_contents('php://input'), true);
 
 switch ($_SERVER['REQUEST_METHOD']) {
@@ -15,9 +15,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $validated = (isset($data['ci']) && isset($data['name']) && isset($data['last_name'])
             && isset($data['gender']) && isset($data['address']));
 
-        if ($validated) {
-            $student->store($data);
-
+        if ($validated && $student->store($data)) {
             http_response_code(201); //Created
         } else {
             http_response_code(400); //Bad Request
@@ -29,9 +27,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $validated = (isset($_GET['id']) && isset($data['ci']) && isset($data['name'])
             && isset($data['last_name']) && isset($data['gender']) && isset($data['address']));
 
-        if ($validated) {
-            $student->update($_GET['id'], $data);
-
+        if ($validated && $student->update($_GET['id'], $data)) {
             http_response_code(200);
         } else {
             http_response_code(404); //Not Found
@@ -40,18 +36,13 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
 
     case 'DELETE':
-        if (isset($_GET['id'])) {
-            $studentAux = $student->find($_GET['id']);
+        $validated = (isset($_GET['id']));
 
-            if ($studentAux) {
-                $student->delete($_GET['id']);
-
-                http_response_code(204); //No Content
-            } else {
-                http_response_code(404);
-                echo json_encode(['message' => 'El estudiante no se pudo eliminar']);
-                return;
-            }
+        if ($validated && $student->delete($_GET['id'])) {
+            http_response_code(204); //No Content
+        } else {
+            http_response_code(404);
+            echo json_encode(['message' => 'El estudiante no se pudo eliminar']);
         }
         break;
 
