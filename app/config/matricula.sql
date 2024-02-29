@@ -42,7 +42,12 @@ CREATE TABLE `matricula` (
 --
 
 INSERT INTO `matricula` (`id`, `student_id`, `no_matricula`, `grade`, `grupo`, `regime`, `school`) VALUES
-(1, 14, '12345678', '1', '6', 'Externo', 'Abihail Gonzales');
+(1, 1, '20220001', '11th', 'A', 'Diurno', 'Escuela Secundaria XYZ'),
+(2, 2, '20220002', '12th', 'B', 'Nocturno', 'Colegio ABC'),
+(3, 3, '20220003', '10th', 'C', 'Diurno', 'Instituto 123'),
+(4, 4, '20220004', '11th', 'D', 'Diurno', 'Escuela Superior DEF'),
+(5, 5, '20220005', '9th', 'E', 'Nocturno', 'Colegio GHI');
+
 
 -- --------------------------------------------------------
 
@@ -63,8 +68,12 @@ CREATE TABLE `students` (
 -- Volcado de datos para la tabla `students`
 --
 
-INSERT INTO `students` (`id`, `ci`, `name`, `last_name`, `gender`, `address`) VALUES
-(14, '12345678910', 'Danna', 'Rodriguez Cedeño', 'F', 'Main street, 5th');
+INSERT INTO students (ci, name, last_name, gender, address) VALUES
+('12345678910', 'Juan', 'Pérez', 'M', 'Calle 123, Ciudad A'),
+('98765438910', 'María', 'González', 'F', 'Avenida Principal, Ciudad B'),
+('45678908910', 'Pedro', 'Díaz', 'M', 'Calle 456, Ciudad C'),
+('65432108910', 'Ana', 'Martínez', 'F', 'Avenida Central, Ciudad D'),
+('13579248910', 'Carlos', 'López', 'M', 'Calle 789, Ciudad E');
 
 -- --------------------------------------------------------
 

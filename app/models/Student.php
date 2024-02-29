@@ -1,5 +1,5 @@
 <?php
-require_once "../utils/DatabaseConnection.php";
+require_once "../../app/utils/DatabaseConnection.php";
 
 class Student
 {
