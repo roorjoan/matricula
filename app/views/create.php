@@ -5,10 +5,10 @@ include_once "./layouts/header.php";
 
 <div class="container">
     <h2>Registro de Estudiante</h2>
-    <form action="../controllers/store.php" method="POST">
+    <form action="../controllers/StudentController.php" method="POST">
         <div class="mb-3">
             <label for="ci" class="form-label">CI:</label>
-            <input type="text" class="form-control" id="ci" name="ci" max="11" required>
+            <input type="text" class="form-control" id="ci" name="ci" required>
         </div>
         <div class="mb-3">
             <label for="name" class="form-label">Nombre:</label>
@@ -21,16 +21,16 @@ include_once "./layouts/header.php";
         <div class="mb-3">
             <label for="gender" class="form-label">Género:</label>
             <select class="form-select" id="gender" name="gender" required>
-                <option value="" disabled>Seleccionar</option>
-                <option value="M">Masculino</option>
-                <option value="F">Femenino</option>
+                <option value="" selected disabled>Seleccionar</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
             </select>
         </div>
         <div class="mb-3">
             <label for="address" class="form-label">Dirección:</label>
             <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+        <button type="submit" name="store" class="btn btn-primary btn-sm">Guardar</button>
     </form>
 </div>
 

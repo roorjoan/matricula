@@ -31,11 +31,23 @@ class Student
      * @return array|bool Un array con los datos del estudiante si se encuentra,
      *                   o false si el estudiante no se encuentra o ocurre un error al ejecutar la consulta.
      */
-    public function find(string $ci): array | bool
+    public function findByCI(string $ci): array | bool
     {
         try {
             $statement = $this->connection->prepare("SELECT * FROM students WHERE ci = ?");
             $statement->execute([$ci]);
+            return $statement->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            //var_dump($e);
+            return false;
+        }
+    }
+
+    public function findById(int $id): array | bool
+    {
+        try {
+            $statement = $this->connection->prepare("SELECT * FROM students WHERE id = ?");
+            $statement->execute([$id]);
             return $statement->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             //var_dump($e);
@@ -55,7 +67,7 @@ class Student
     public function store(array $data): bool
     {
         try {
-            if ($this->find($data['ci'])) {
+            if ($this->findByCI($data['ci'])) {
                 return false;
             }
 
@@ -81,7 +93,7 @@ class Student
     public function update(int $id, array $data): bool
     {
         try {
-            if ($this->find($data['ci'])) {
+            if ($this->findById($id)) {
                 $statement = $this->connection->prepare("UPDATE students SET ci = ?, name = ?, last_name = ?, gender = ?, address = ? WHERE id = ?");
                 $statement->execute([$data['ci'], $data['name'], $data['last_name'], $data['gender'], $data['address'], $id]);
                 return true;
