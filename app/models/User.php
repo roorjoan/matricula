@@ -1,5 +1,5 @@
 <?php
-require_once "./app/utils/DatabaseConnection.php";
+require_once "../../app/utils/DatabaseConnection.php";
 
 class User
 {
@@ -19,8 +19,7 @@ class User
 
         try {
             $statement = $this->connection->prepare("INSERT INTO users (name, email, password, is_admin) VALUES (?, ?, ?, ?)");
-            $statement->execute([$data['name'], $data['email'], $passwordHash, $data['is_admin']]);
-            return true;
+            return $statement->execute([$data['name'], $data['email'], $passwordHash, 0]);
         } catch (Exception $e) {
             return false;
         }
@@ -68,9 +67,7 @@ class User
             $roleInverted = $user['is_admin'] === 0 ? 1 : 0; //0-user,1-admin
 
             $statement = $this->connection->prepare("UPDATE users SET is_admin = $roleInverted WHERE id = ?");
-            $statement->execute([$id]);
-
-            return true;
+            return $statement->execute([$id]);
         } catch (Exception $e) {
             return false;
         }
