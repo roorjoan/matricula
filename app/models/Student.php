@@ -18,7 +18,6 @@ class Student
             $statement->execute();
             return $statement->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            //var_dump($e);
             return false;
         }
     }
@@ -38,7 +37,6 @@ class Student
             $statement->execute([$ci]);
             return $statement->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            //var_dump($e);
             return false;
         }
     }
@@ -50,7 +48,6 @@ class Student
             $statement->execute([$id]);
             return $statement->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
-            //var_dump($e);
             return false;
         }
     }
@@ -72,10 +69,8 @@ class Student
             }
 
             $statement = $this->connection->prepare("INSERT INTO students (ci, name, last_name, gender, address) VALUES (?, ?, ?, ?, ?)");
-            $statement->execute([$data['ci'], $data['name'], $data['last_name'], $data['gender'], $data['address']]);
-            return true;
+            return $statement->execute([$data['ci'], $data['name'], $data['last_name'], $data['gender'], $data['address']]);
         } catch (PDOException $e) {
-            //var_dump($e);
             return false;
         }
     }
@@ -93,14 +88,9 @@ class Student
     public function update(int $id, array $data): bool
     {
         try {
-            if ($this->findById($id)) {
-                $statement = $this->connection->prepare("UPDATE students SET ci = ?, name = ?, last_name = ?, gender = ?, address = ? WHERE id = ?");
-                $statement->execute([$data['ci'], $data['name'], $data['last_name'], $data['gender'], $data['address'], $id]);
-                return true;
-            }
-            return false;
+            $statement = $this->connection->prepare("UPDATE students SET ci = ?, name = ?, last_name = ?, gender = ?, address = ? WHERE id = ?");
+            return $statement->execute([$data['ci'], $data['name'], $data['last_name'], $data['gender'], $data['address'], $id]);
         } catch (PDOException $e) {
-            //var_dump($e);
             return false;
         }
     }
@@ -116,30 +106,8 @@ class Student
     {
         try {
             $statement = $this->connection->prepare("DELETE FROM students WHERE id = ?");
-            $statement->execute([$id]);
-            return true;
+            return $statement->execute([$id]);
         } catch (PDOException $e) {
-            //var_dump($e);
-            return false;
-        }
-    }
-
-    /**
-     * Matricula a un estudiante en un curso.
-     *
-     * @param array $data Los datos de matrícula del estudiante.
-     *                    Debe contener las claves 'no_matricula', 'student_id', 'grade', 'grupo', 'regime' y 'school'.
-     *
-     * @return bool True si la matrícula se realizó correctamente, false si no se pudo matricular al estudiante.
-     */
-    public function matricular(array $data): bool
-    {
-        try {
-            $statement = $this->connection->prepare("INSERT INTO matricula (no_matricula, student_id, grade, grupo, regime, school) VALUES (?, ?, ?, ?, ?, ?)");
-            $statement->execute([$data['no_matricula'], $data['student_id'], $data['grade'], $data['grupo'], $data['regime'], $data['school']]);
-            return true;
-        } catch (PDOException $e) {
-            //var_dump($e);
             return false;
         }
     }
