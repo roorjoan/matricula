@@ -5,12 +5,7 @@ class Student
 {
     use DatabaseConnection;
 
-    /**
-     * Obtiene todos los estudiantes de la base de datos.
-     *
-     * @return array|bool Un array con todos los estudiantes si la consulta se realizó con éxito,
-     *                   o false si ocurrió un error al ejecutar la consulta.
-     */
+    
     public function all(): array | bool
     {
         try {
@@ -22,14 +17,6 @@ class Student
         }
     }
 
-    /**
-     * Busca un estudiante por su número de cédula en la base de datos.
-     *
-     * @param string $ci El número de cédula del estudiante que se va a buscar.
-     *
-     * @return array|bool Un array con los datos del estudiante si se encuentra,
-     *                   o false si el estudiante no se encuentra o ocurre un error al ejecutar la consulta.
-     */
     public function findByCI(string $ci): array | bool
     {
         try {
@@ -52,15 +39,6 @@ class Student
         }
     }
 
-    /**
-     * Almacena un nuevo estudiante en la base de datos.
-     *
-     * @param array $data Los datos del estudiante a almacenar.
-     *                    Debe contener las claves 'ci', 'name', 'last_name', 'gender' y 'address'.
-     *
-     * @return bool True si el estudiante se almacenó correctamente, false si no se pudo almacenar
-     *              o si ya existe un estudiante con el mismo número de cédula.
-     */
     public function store(array $data): bool
     {
         try {
@@ -75,16 +53,6 @@ class Student
         }
     }
 
-    /**
-     * Actualiza los datos de un estudiante en la base de datos.
-     *
-     * @param int $id El ID del estudiante que se va a actualizar.
-     * @param array $data Los nuevos datos del estudiante.
-     *                    Debe contener las claves 'ci', 'name', 'last_name', 'gender' y 'address'.
-     *
-     * @return bool True si los datos del estudiante se actualizaron correctamente, false si no se pudo actualizar
-     *              o si no se encontró al estudiante con el ID proporcionado.
-     */
     public function update(int $id, array $data): bool
     {
         try {
@@ -95,13 +63,6 @@ class Student
         }
     }
 
-    /**
-     * Elimina un estudiante de la base de datos por su ID.
-     *
-     * @param int $id El ID del estudiante que se va a eliminar.
-     *
-     * @return bool True si el estudiante se eliminó correctamente, false si no se pudo eliminar.
-     */
     public function delete(int $id): bool
     {
         try {

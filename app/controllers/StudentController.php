@@ -12,16 +12,31 @@ if (isset($_GET['id'])) {
     $student = $studentInstance->findById($_GET['id']);
     //
 } elseif (isset($_POST['store']) && !$validateStudentData) {
-    $studentInstance->store($_POST);
-    header('Location: ../../app/views/index.php');
+    $response = $studentInstance->store($_POST);
+
+    if ($response) {
+        header('Location: ../../app/views/index.php');
+    } else {
+        header('Location: ../../app/views/partials/server_error.php');
+    }
     //
 } elseif (isset($_POST['update']) && !$validateStudentData) {
-    $studentInstance->update($_POST['id'], $_POST);
-    header('Location: ../../app/views/index.php');
+    $response = $studentInstance->update($_POST['id'], $_POST);
+
+    if ($response) {
+        header('Location: ../../app/views/index.php');
+    } else {
+        header('Location: ../../app/views/partials/server_error.php');
+    }
     //
 } elseif (isset($_POST['delete'])) {
-    $studentInstance->delete($_POST['id']);
-    header('Location: ../../app/views/index.php');
+    $response = $studentInstance->delete($_POST['id']);
+
+    if ($response) {
+        header('Location: ../../app/views/index.php');
+    } else {
+        header('Location: ../../app/views/partials/server_error.php');
+    }
     //
 } else {
     $students = $studentInstance->all();

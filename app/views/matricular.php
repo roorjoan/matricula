@@ -1,13 +1,24 @@
 <?php
 include_once "./layouts/header.php";
 //include_once "./partials/security.php";
-require_once "../../app/controllers/StudentController.php";
+require_once "../../app/controllers/MatriculaController.php";
 ?>
 
 <div class="container">
     <h2>Matrícula de Estudiante</h2>
     <form action="../controllers/MatriculaController.php" method="POST">
-        <input type="hidden" name="student_id" value="<?= $student['id'] ?>">
+
+        <div class="mb-3">
+            <label for="student_id" class="form-label">Estudiante</label>
+            <select class="form-select" id="student_id" name="student_id" required>
+                <option value="" selected disabled>Seleccionar</option>
+                <?php foreach ($studentsNoMatriculados as $student) { ?>
+                    <option value="<?= $student['id'] ?>"><?= $student['name'] . " " . $student['last_name'] ?></option>
+                <?php } ?>
+            </select>
+        </div>
+
+
         <div class="mb-3">
             <label for="no_matricula" class="form-label">Número de Matrícula:</label>
             <input type="text" class="form-control" id="no_matricula" name="no_matricula" required>
