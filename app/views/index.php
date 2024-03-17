@@ -13,7 +13,7 @@ require_once "../../app/controllers/StudentController.php";
     }
     ?>
 
-    <table class="table table-striped table-bordered">
+    <table class="table table-striped table-bordered" id="myTable">
         <thead>
             <tr>
                 <th scope="col">Carnet de identidad</th>
@@ -55,5 +55,20 @@ require_once "../../app/controllers/StudentController.php";
         </tbody>
     </table>
 </div>
+
+<script src="../../public/dataTables/jquery-3.7.1.min.js"></script>
+<!-- <script src="../../public/js/bootstrap.bundle.min.js"></script> -->
+<script src="../../public/dataTables/jquery.dataTables.min.js"></script>
+<script src="../../public/dataTables/dataTables.bootstrap5.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable({
+            "language": {
+                "url": "/public/dataTables/Spanish.json"
+            }
+        });
+    });
+</script>
 
 <?php include_once "./layouts/footer.php"; ?>

@@ -19,6 +19,6 @@
     </div>
 </div>
 
-<script src="../../public/js/login.js"></script>
+<script src="../../public/js/validations/login.js"></script>
 
 <?php include_once "./layouts/footer.php"; ?>

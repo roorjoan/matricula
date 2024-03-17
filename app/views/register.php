@@ -27,6 +27,6 @@
     </div>
 </div>
 
-<script src="../../public/js/register.js"></script>
+<script src="../../public/js/validations/register.js"></script>
 
 <?php include_once "./layouts/footer.php"; ?>
