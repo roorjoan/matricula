@@ -1,11 +1,19 @@
 <?php
 include_once "./layouts/header.php";
-//include_once "./partials/security.php";
+include_once "./partials/security.php";
 require_once "../../app/controllers/StudentController.php";
 ?>
 
 <div class="container">
+
+    <p>Hola, <?= $_SESSION['user_email'] ?>
+        <form action="../../app/controllers/UserController.php" method="post">
+            <button type="submit" name="logout" class="btn btn-link btn-sm">Salir</button>
+        </form>
+    </p>
+
     <h2>Listado de estudiantes</h2>
+
     <a href="create.php" class="btn btn-primary btn-sm mb-2">Guardar</a>
     <?php
     if (!empty($students)) {

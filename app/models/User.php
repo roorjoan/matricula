@@ -49,4 +49,11 @@ class User
             return false;
         }
     }
+
+    public function logout(): bool
+    {
+        session_start();
+
+        return session_destroy();
+    }
 }

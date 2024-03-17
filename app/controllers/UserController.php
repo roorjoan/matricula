@@ -19,9 +19,22 @@ if (isset($_POST['register']) && !$validateRegisterUserData) {
     $response = $userInstance->login($_POST);
 
     if ($response) {
+        session_start();
+        $_SESSION['loggedin'] = true;
+        $_SESSION['user_email'] = $_POST['email'];
+
         header('Location: ../../app/views/index.php');
     } else {
         header('Location: ../../app/views/login.php');
+    }
+    //
+} elseif (isset($_POST['logout'])) {
+    $response = $userInstance->logout();
+
+    if ($response) {
+        header('Location: ../../app/views/login.php');
+    } else {
+        header('Location: ../../app/views/partials/server_error.php');
     }
     //
 }
