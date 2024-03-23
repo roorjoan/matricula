@@ -1,1 +1,10 @@
+#Proteger rutas
+Options -Indexes
 
+#Ocultar extensión .php
+RewriteEngine on
+RewriteBase /app/
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteRule ^(.*)$ $1.php [L,QSA]

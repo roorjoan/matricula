@@ -6,11 +6,12 @@ require_once "../../app/controllers/StudentController.php";
 
 <div class="container">
 
-    <p>Hola, <?= $_SESSION['user_email'] ?>
+    <div style="display: flex;justify-content: center; align-items: start;">
+        <p style=" margin-right: 2px;">Hola, <?= $_SESSION['user_email'] ?></p>
         <form action="../../app/controllers/UserController.php" method="post">
-            <button type="submit" name="logout" class="btn btn-link btn-sm">Salir</button>
+            <button type="submit" name="logout" class="btn btn-link btn-sm" style="text-decoration: none;">Salir</button>
         </form>
-    </p>
+    </div>
 
     <h2>Listado de estudiantes</h2>
 

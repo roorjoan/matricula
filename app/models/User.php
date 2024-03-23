@@ -5,22 +5,38 @@ class User
 {
     use DatabaseConnection;
 
+    /**
+     * Registra un nuevo usuario en la base de datos.
+     *
+     * @param array $data Los datos del usuario a registrar: 'name', 'email' y 'password'.
+     *
+     * @return bool true si el usuario se registró correctamente, false si ocurrió algún error.
+     */
     public function register(array $data): bool
     {
         $passwordHash = password_hash($data['password'], PASSWORD_DEFAULT);
 
         try {
-            $statement = $this->connection->prepare("INSERT INTO users (name, email, password, is_admin) VALUES (?, ?, ?, ?)");
+            $sql = "INSERT INTO users (name, email, password, is_admin) VALUES (?, ?, ?, ?)";
+            $statement = $this->connection->prepare($sql);
             return $statement->execute([$data['name'], $data['email'], $passwordHash, 0]);
         } catch (Exception $e) {
             return false;
         }
     }
 
+    /**
+     * Realiza el proceso de inicio de sesión de un usuario.
+     *
+     * @param array $data Los datos de inicio de sesión del usuario: 'email' y 'password'.
+     *
+     * @return bool true si el inicio de sesión es exitoso, false si la contraseña no coincide o si ocurre algún error.
+     */
     public function login(array $data): bool
     {
         try {
-            $statement = $this->connection->prepare("SELECT password FROM users WHERE email = ?");
+            $sql = "SELECT password FROM users WHERE email = ?";
+            $statement = $this->connection->prepare($sql);
             $statement->execute([$data['email']]);
             $user = $statement->fetch(PDO::FETCH_ASSOC);
 
@@ -35,21 +51,35 @@ class User
         }
     }
 
+    /**
+     * Cambia el rol de un usuario entre administrador y usuario normal.
+     *
+     * @param int $id El ID del usuario cuyo rol se va a cambiar.
+     *
+     * @return bool true si se cambió el rol correctamente, false si ocurrió algún error.
+     */
     public function changeRole(int $id): bool
     {
         try {
-            $statement = $this->connection->prepare("SELECT is_admin FROM users WHERE id = ?");
+            $sql = "SELECT is_admin FROM users WHERE id = ?";
+            $statement = $this->connection->prepare($sql);
             $statement->execute([$id]);
             $user = $statement->fetch(PDO::FETCH_ASSOC);
             $roleInverted = $user['is_admin'] === 0 ? 1 : 0; //0-user,1-admin
 
-            $statement = $this->connection->prepare("UPDATE users SET is_admin = $roleInverted WHERE id = ?");
+            $sql = "UPDATE users SET is_admin = $roleInverted WHERE id = ?";
+            $statement = $this->connection->prepare($sql);
             return $statement->execute([$id]);
         } catch (Exception $e) {
             return false;
         }
     }
 
+    /**
+     * Cierra la sesión del usuario.
+     *
+     * @return bool true si la sesión se cerró correctamente, false si ocurrió algún error.
+     */
     public function logout(): bool
     {
         session_start();

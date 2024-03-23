@@ -5,6 +5,13 @@ class Matricula
 {
     use DatabaseConnection;
 
+    /**
+     * Registra la matrícula de un estudiante.
+     *
+     * @param array $data Datos de la matrícula: 'no_matricula', 'student_id', 'grade', 'grupo', 'regime' y 'school'.
+     *
+     * @return bool true si la matrícula se realizó correctamente, false si ocurrió algún error.
+     */
     public function matricular(array $data): bool
     {
         try {
@@ -16,6 +23,12 @@ class Matricula
         }
     }
 
+    /**
+     * Obtiene la lista de estudiantes que no están matriculados.
+     *
+     * @return array|bool Un array asociativo con los datos de los estudiantes no matriculados si la operación es exitosa,
+     *                   o false si ocurrió algún error.
+     */
     public function noMatriculados(): array | bool
     {
         try {

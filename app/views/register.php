@@ -22,6 +22,7 @@
                     <input type="password" class="form-control" id="repeat_password" name="repeat_password">
                 </div>
                 <button type="submit" name="register" class="btn btn-primary">Registrarse</button>
+                <small><a href="login.php"> Entrar</a></small>
             </form>
         </div>
     </div>

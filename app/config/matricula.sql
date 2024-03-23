@@ -16,6 +16,9 @@ CREATE TABLE IF NOT EXISTS users (
   password VARCHAR(255) NOT NULL,
   is_admin tinyint(1) DEFAULT '0'
 );
+
+-- password = Admin123
+INSERT INTO users (id, name, email, password, is_admin) VALUES (1, 'Administrator', 'admin@example.com', '$2y$10$SsIWTFJlE/.RZz9G7C7hQuox9xasRgRihTHKCxgxPtwcTkJC51e4W', 1);
 -- --------------------------------------------------------
 
 --
