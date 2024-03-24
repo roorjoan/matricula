@@ -5,6 +5,8 @@ $validateRegisterUserData = (empty($_POST['name']) && empty($_POST['email']) && 
 $validateLoginUserData = (empty($_POST['email']) && empty($_POST['password'])); //true si estan vacios
 
 $userInstance = new User();
+$users = [];
+$is_admin = false;
 
 if (isset($_POST['register']) && !$validateRegisterUserData) {
     $response = $userInstance->register($_POST);
@@ -37,4 +39,16 @@ if (isset($_POST['register']) && !$validateRegisterUserData) {
         header('Location: ../../app/views/partials/server_error.php');
     }
     //
+} elseif (isset($_POST['changeRole'])) {
+    $response = $userInstance->changeRole($_POST['id']);
+
+    if ($response) {
+        header('Location: ../../app/views/users.php');
+    } else {
+        header('Location: ../../app/views/partials/server_error.php');
+    }
+    //
+} else {
+    $users = $userInstance->all();
+    $is_admin = $userInstance->isAdmin();
 }

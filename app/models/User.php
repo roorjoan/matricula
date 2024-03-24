@@ -86,4 +86,43 @@ class User
 
         return session_destroy();
     }
+
+    /**
+     * Obtiene todos los registros de usuarios de la base de datos.
+     *
+     * @return array|bool Un array asociativo con los datos ( id, name y is_admin) de todos los usuarios si la operación es exitosa,
+     *                   o false si ocurrió algún error.
+     */
+    public function all(): array | bool
+    {
+        try {
+            $sql = "SELECT id, name, is_admin FROM users;";
+            $statement = $this->connection->prepare($sql);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Verifica si el usuario actual tiene privilegios de administrador.
+     * Obtiene el valor 'is_admin' de la base de datos para el usuario asociado al correo electrónico de la sesión activa.
+     *
+     * @return bool Devuelve true si el usuario es administrador, de lo contrario, devuelve false.
+     */
+    public function isAdmin(): bool
+    {
+        $email = $_SESSION['user_email'];
+        try {
+            $sql = "SELECT is_admin FROM users WHERE email = ?";
+            $statement = $this->connection->prepare($sql);
+            $statement->execute([$email]);
+            $response = $statement->fetch(PDO::FETCH_ASSOC);
+
+            return $response['is_admin'] === 1 ? true : false;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
 }

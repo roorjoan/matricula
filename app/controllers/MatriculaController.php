@@ -8,6 +8,7 @@ $validateMatriculaData = (empty($_POST['no_matricula']) && empty($_POST['grade']
 $matriculaInstance = new Matricula();
 $studentInstance = new Student();
 $studentsNoMatriculados = [];
+$matriculados = [];
 
 if (isset($_POST['matricular']) && !$validateMatriculaData) {
     $response = $matriculaInstance->matricular($_POST);
@@ -17,12 +18,8 @@ if (isset($_POST['matricular']) && !$validateMatriculaData) {
     } else {
         header('Location: ../../app/views/partials/server_error.php');
     }
+    //
 } else {
-    $response = $matriculaInstance->noMatriculados();
-
-    if ($response) {
-        $studentsNoMatriculados = $response;
-    } else {
-        $studentsNoMatriculados = $studentInstance->all();
-    }
+    $studentsNoMatriculados = $matriculaInstance->noMatriculados();
+    $matriculados = $matriculaInstance->matriculados();
 }

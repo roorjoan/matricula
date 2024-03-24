@@ -1,6 +1,7 @@
 <?php
 include_once "./layouts/header.php";
 include_once "./partials/security.php";
+include_once "./partials/authorization.php";
 require_once "../../app/controllers/MatriculaController.php";
 ?>
 
@@ -17,7 +18,6 @@ require_once "../../app/controllers/MatriculaController.php";
                 <?php } ?>
             </select>
         </div>
-
 
         <div class="mb-3">
             <label for="no_matricula" class="form-label">Número de Matrícula:</label>

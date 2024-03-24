@@ -32,7 +32,43 @@ class Matricula
     public function noMatriculados(): array | bool
     {
         try {
-            $sql = "SELECT s.id, s.name, s.last_name FROM students s INNER JOIN matricula m ON s.id != m.student_id;";
+            $sql = "SELECT id FROM students";
+            $statement = $this->connection->prepare($sql);
+            $statement->execute();
+            $students = $statement->fetchAll(PDO::FETCH_COLUMN); //Devuelve el valor de la columna
+
+            $sql = "SELECT student_id FROM matricula";
+            $statement = $this->connection->prepare($sql);
+            $statement->execute();
+            $matriculas = $statement->fetchAll(PDO::FETCH_COLUMN);
+
+            $noMatriculadosIds = array_diff($students, $matriculas);
+
+            $noMatriculados = [];
+            foreach ($noMatriculadosIds as $id) {
+                $sql = "SELECT * FROM students WHERE id = ?";
+                $statement = $this->connection->prepare($sql);
+                $statement->execute([$id]);
+                $student = $statement->fetch(PDO::FETCH_ASSOC);
+                $noMatriculados[] = $student;
+            }
+
+            return $noMatriculados;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Obtiene todos los registros de matrícula de la base de datos.
+     *
+     * @return array|bool Un array asociativo con los datos (no_matricula, name y last_name) de todas las matrículas si la operación es exitosa,
+     *                   o false si ocurrió algún error.
+     */
+    public function matriculados(): array | bool
+    {
+        try {
+            $sql = "SELECT m.no_matricula, s.name, s.last_name FROM matricula as m INNER JOIN students AS s ON m.student_id = s.id;";
             $statement = $this->connection->prepare($sql);
             $statement->execute();
             return $statement->fetchAll(PDO::FETCH_ASSOC);
