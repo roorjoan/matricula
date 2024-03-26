@@ -2,4 +2,4 @@
 require_once "./app/config/App.php";
 
 App::install();
-header("Location:app/views/index.php");
+header("Location:app/views/login.php");

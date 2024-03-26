@@ -14,7 +14,7 @@ if (isset($_POST['matricular']) && !$validateMatriculaData) {
     $response = $matriculaInstance->matricular($_POST);
 
     if ($response) {
-        header('Location: ../../app/views/index.php');
+        header('Location: ../../app/views/matriculados.php');
     } else {
         header('Location: ../../app/views/partials/server_error.php');
     }

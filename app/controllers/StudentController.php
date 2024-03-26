@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
     $response = $studentInstance->store($_POST);
 
     if ($response) {
-        header('Location: ../../app/views/index.php');
+        header('Location: ../../app/views/students.php');
     } else {
         header('Location: ../../app/views/partials/server_error.php');
     }
@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
     $response = $studentInstance->update($_POST['id'], $_POST);
 
     if ($response) {
-        header('Location: ../../app/views/index.php');
+        header('Location: ../../app/views/students.php');
     } else {
         header('Location: ../../app/views/partials/server_error.php');
     }
@@ -33,7 +33,7 @@ if (isset($_GET['id'])) {
     $response = $studentInstance->delete($_POST['id']);
 
     if ($response) {
-        header('Location: ../../app/views/index.php');
+        header('Location: ../../app/views/students.php');
     } else {
         header('Location: ../../app/views/partials/server_error.php');
     }
