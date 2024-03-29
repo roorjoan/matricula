@@ -1,7 +1,7 @@
 <?php include_once "./layouts/header.php"; ?>
 
 <h2>Registro de Estudiante</h2>
-<form action="../controllers/StudentController.php" method="POST" id="form" onsubmit="return validateCreateOrEdit();">
+<form class="mb-3" action="../controllers/StudentController.php" method="POST" id="form" onsubmit="return validateCreateOrEdit();">
     <div class="row">
         <div class="col-md-6">
             <div class="mb-3">
@@ -38,7 +38,7 @@
         <label for="address" class="form-label">Dirección:</label>
         <textarea class="form-control" id="address" name="address" rows="3"></textarea>
     </div>
-    <button type="submit" name="store" class="btn btn-primary btn-sm">Guardar</button>
+    <button type="submit" name="store" class="btn btn-primary">GUARDAR</button>
 </form>
 
 

@@ -10,6 +10,7 @@ require_once "../../app/controllers/MatriculaController.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Regístrate fácilmente en nuestra aplicación web de gestión de estudiantes y sus matrículas. Elige trabajar comodamente y aumenta tu productividad. Entra ya, Haz tu trabajo mas fácil.">
     <title>PW - Matrículas</title>
     <link rel="icon" href="../../public/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../../public/css/bootstrap.min.css">

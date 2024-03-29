@@ -4,7 +4,7 @@ include_once "./partials/authorization.php";
 ?>
 
 <h2>Matrícula de Estudiante</h2>
-<form action="../controllers/MatriculaController.php" method="POST" id="matricula_form" onsubmit="return validateMatricula();">
+<form class="mb-3" action="../controllers/MatriculaController.php" method="POST" id="matricula_form" onsubmit="return validateMatricula();">
     <div class="mb-3">
         <label for="student_id" class="form-label">Estudiante:</label>
         <select class="form-select" id="student_id" name="student_id">
@@ -50,7 +50,7 @@ include_once "./partials/authorization.php";
         <label for="school" class="form-label">Escuela:</label>
         <input type="text" class="form-control" id="school" name="school">
     </div>
-    <button type="submit" name="matricular" class="btn btn-primary">Matricular</button>
+    <button type="submit" name="matricular" class="btn btn-primary">MATRICULAR</button>
 </form>
 
 

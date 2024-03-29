@@ -7,7 +7,7 @@ Hola, <span class="text-success"><i><?= $_SESSION['user_email'] ?></i></span>
     <p>
         Gestiona los datos de tus estudiantes y sus matrículas. Es muy fácil hacerlo con esta aplicación creada para tu comodidad y productividad. Haz que tu trabajo sea placentero; no te defraudará.
     </p>
-    <a class="btn btn-primary btn-lg mt-5" href="./create.php">Comienza ahora</a>
+    <a class="btn btn-primary btn-lg mt-5 mb-3" href="./create.php">Comienza ahora</a>
 </div>
 
 <?php include_once "./layouts/footer.php"; ?>
